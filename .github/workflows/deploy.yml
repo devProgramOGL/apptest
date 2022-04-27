@@ -7,14 +7,15 @@ on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
     branches: [ master ]
-
+    tags:
+      - .*
 env:
-    AWS_REGION: eu-west-1
-    ECR_REPOSITORY: app
-    ECS_SERVICE: app
-    ECS_CLUSTER: MyApp
-    ECS_TASK_DEFINITION: .aws/td.json
-    CONTAINER_NAME: nginx
+  AWS_REGION: ap-south-1
+  ECR_REPOSITORY: demo-repo
+  ECS_SERVICE: demo-service
+  ECS_CLUSTER: demo-ecs-cluster
+  ECS_TASK_DEFINITION: .aws/td.json
+  CONTAINER_NAME: nginx
 
 jobs:
 
