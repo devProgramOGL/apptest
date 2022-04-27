@@ -8,6 +8,9 @@ on:
   push:
     branches: [ master ]
 
+env:
+  ECS_TASK_DEFINITION: ./td.json
+
 jobs:
 
   build:
@@ -42,15 +45,11 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
-      - name: Download task definition
-        run: |
-            aws ecs describe-task-definition --task-definition my-task-definition-family --query taskDefinition > task-definition.json
-
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-            task-definition: task-definition.json
+            task-definition: ${{ env.ECS_TASK_DEFINITION }}
             container-name: app
             image: ${{ steps.build-image.outputs.image }}
 
