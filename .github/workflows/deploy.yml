@@ -10,7 +10,7 @@ on:
       - .*
   push:
     branches: [ master ]
-    
+
 env:
   AWS_REGION: eu-west-1
   ECR_REPOSITORY: app
@@ -24,13 +24,13 @@ defaults:
     shell: bash
 
 jobs:
-
-  build:
-
-    name: Build Image
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    permissions:
+      packages: write
+      contents: read
+      
     steps:
        - name: Checkout
          uses: actions/checkout@v2
