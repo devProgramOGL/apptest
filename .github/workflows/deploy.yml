@@ -24,12 +24,9 @@ defaults:
     shell: bash
 
 jobs:
-  deploy:
-    name: Deploy
+  build:
+    name: Build Image
     runs-on: ubuntu-latest
-    permissions:
-      packages: write
-      contents: read
 
     steps:
        - name: Checkout
