@@ -9,7 +9,7 @@ on:
     branches: [ master ]
 
 env:
-  ECS_TASK_DEFINITION: ./td.json
+  ECS_TASK_DEFINITION: .aws/td.json
 
 jobs:
 
